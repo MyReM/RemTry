@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#tab {
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table border="1" id="tab">
+			<tr>
+				<th>
+					<input type="checkbox" id="selectall" />全选
+				</th>
+				<th>
+					商品编号
+				</th>
+				<th>
+					名称
+				</th>
+				<th>
+					价格
+				</th>
+				<th>
+					上货日期
+				</th>
+				<th>
+					是否下架
+				</th>
+				<th>
+					操作
+				</th>
+			</tr>
+		</table>
+		<!--<div class="bg"></div>-->
+		<div class="add-div">
+			<hr/>
+			<form class="frm">
+				<span>商品编号&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span>
+				<input type="text" class="id" name="carNum" placeholder="请输入编号" /><span class="msg"></span><br/>
+				<span>商品名称&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span>
+				<input type="text" class="name" name="carColor" placeholder="请输入名称" /><span class="nmsg"></span><br/>
+				<span>商品价格&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span>
+				<input type="text" class="price" name="carPrice" placeholder="请输入价格" /><span class="pmsg"></span><br/>
+				<span>上货日期&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span>
+				<select class="years">
+					<option>2006</option>
+					<option>2007</option>
+					<option>2009</option>
+					<option>2009</option>
+					<option>2010</option>
+					<option>2011</option>
+					<option>2012</option>
+					<option>2013</option>
+					<option>2014</option>
+					<option>2015</option>
+					<option>2016</option>
+					<option>2017</option>
+				</select>
+				<select class="months">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
+				<select class="days">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					<option>13</option>
+					<option>14</option>
+					<option>15</option>
+					<option>16</option>
+					<option>17</option>
+					<option>18</option>
+					<option>19</option>
+					<option>20</option>
+					<option>21</option>
+					<option>22</option>
+					<option>22</option>
+					<option>23</option>
+					<option>24</option>
+					<option>25</option>
+					<option>26</option>
+					<option>27</option>
+					<option>28</option>
+					<option>29</option>
+					<option>30</option>
+					<option>31</option>
+				</select>
+				<br/>
+				<span>是否下架&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</span>
+				<input type="radio" class="down" name="status" value="1" checked="checked" />是<input type="radio" class="down" name="status" value="0" />否<br/>
+				<a href="#" class="add">添加</a>
+				<a href="#" class="edit">修改</a>
+				<a href="#" class="dels">批量删除</a>
+			</form>
+		</div>
+		<script>
+			var list = [{
+					id: "1",
+					name: "橙子",
+					price: "99",
+					times: "1997-02-10",
+					status: "0"
+				},
+				{
+					id: "2",
+					name: "橘子",
+					price: "12",
+					times: "2007-01-10",
+					status: "1"
+				},
+				{
+					id: "3",
+					name: "苹果",
+					price: "23",
+					times: "2017-03-10",
+					status: "1"
+				},
+				{
+					id: "4",
+					name: "蜜柚",
+					price: "32",
+					times: "2009-07-10",
+					status: "0"
+				},
+				{
+					id: "5",
+					name: "葡萄",
+					price: "122",
+					times: "2010-08-10",
+					status: "1"
+				},
+				{
+					id: "6",
+					name: "椰子",
+					price: "199",
+					times: "2017-05-10",
+					status: "0"
+				},
+				{
+					id: "7",
+					name: "草莓",
+					price: "929",
+					times: "1997-02-10",
+					status: "1"
+				},
+				{
+					id: "8",
+					name: "芒果",
+					price: "994",
+					times: "2022-02-10",
+					status: "0"
+				}
+			]
+			var tab = document.getElementById("tab");
+
+			for(var i = 0; i < list.length; i++) {
+				addmsg();
+			}
+
+			function addmsg() {
+				var tr = document.createElement("tr");
+				//是否选中
+				var checkboxtd = document.createElement("td");
+				var inp = document.createElement("input");
+				inp.setAttribute("type", "checkbox");
+				inp.setAttribute("value", i);
+				inp.setAttribute("class", "selects");
+				checkboxtd.appendChild(inp);
+				tr.appendChild(checkboxtd);
+
+				//商品编号
+				var td1 = document.createElement("td");
+				td1.innerHTML = list[i].id;
+				tr.appendChild(td1);
+				//商品名称
+				var td2 = document.createElement("td");
+				td2.innerHTML = list[i].name;
+				tr.appendChild(td2);
+				//价格
+				var td3 = document.createElement("td");
+				td3.innerHTML = list[i].price;
+				tr.appendChild(td3);
+				//上货日期
+				var td4 = document.createElement("td");
+				td4.innerHTML = list[i].times;
+				tr.appendChild(td4);
+				//是否下架
+				var td5 = document.createElement("td");
+				var sinp = document.createElement("input");
+				sinp.setAttribute("type", "checkbox");
+				if(list[i].status == 1) {
+					sinp.setAttribute("checked", "checked");
+				}
+				sinp.setAttribute("value", list[i].status);
+				sinp.setAttribute("class", "status");
+				td5.appendChild(sinp);
+				tr.appendChild(td5);
+				//操作
+				var td6 = document.createElement("td");
+				//删除
+				var del = document.createElement("a");
+				del.innerHTML = "删除";
+				del.setAttribute("title", i);
+				del.setAttribute("class", "del");
+				del.setAttribute("href", "#");
+				td6.appendChild(del)
+				//修改
+				var edit = document.createElement("a");
+				edit.innerHTML = "修改";
+				edit.setAttribute("title", i);
+				edit.setAttribute("class", "edit");
+				edit.setAttribute("href", "#");
+				td6.appendChild(edit)
+				tr.appendChild(td6);
+
+				tab.appendChild(tr);
+
+				//根据id删除单个
+				del.onclick = function() {
+					var id = this.getAttribute("title");
+					for(var i = 0; i < list.length; i++) {
+						if(list[i].id == id) {
+							list.splice(i, 1); //从data数组的第i位置开始删除1个元素
+						}
+					}
+					this.parentNode.parentNode.remove();
+				}
+				//点击修改
+				edit.onclick = function() {
+					var ind = this.getAttribute("title");
+					document.querySelector(".id").value = list[ind].id;
+					document.querySelector(".name").value = list[ind].name;
+					document.querySelector(".price").value = list[ind].price;
+				}
+				//全选反选 
+				var sea = document.getElementById("selectall");
+				sea.onchange = function() {
+					if(this.checked) {
+						inp.checked = true;
+						alert(inp.getAttribute("value"));
+					} else {
+						inp.checked = false;
+					}
+				}
+
+			}
+			//			document.querySelector(".bg").onclick = function(){
+			//				document.querySelector(".bg").style.display="none";
+			//				document.querySelector(".add-div").style.display="none";
+			//			}
+			//			document.querySelector(".close").onclick = function(){
+			//				document.querySelector(".bg").style.display="none";
+			//				document.querySelector(".add-div").style.display="none";
+			//			}
+			document.querySelector(".add").onclick = function() {
+				var id = document.querySelector(".id").value;
+				var name = document.querySelector(".name").value;
+				var price = document.querySelector(".price").value;
+				var year = document.querySelector(".years").value;
+				var month = document.querySelector(".months").value;
+				var day = document.querySelector(".days").value;
+				var downs = document.getElementsByName("status");
+
+				var status;
+				for(var s = 0; s < downs.length; s++) {
+					if(downs[s].checked) {
+						status = downs[s].value;
+					}
+				}
+				var item = {
+					id: id,
+					name: name,
+					price: price,
+					times: year + "-" + month + "-" + day,
+					status: status
+				}
+				var z1 = /^[0-9]{1,9}$/;
+				var z2 = /^[0-9a-zA-Z-_#&%\u4e00-\u9fa5]{1,30}$/;
+				var z3 = /^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/;
+				if(z1.test(id)) {
+					if(z2.test(name)) {
+						if(z3.test(price)) {
+							list.push(item);
+							addmsg();
+						}else{
+							document.querySelector(".pmsg").innerHTML = "只能输入正数";
+						}
+					}else{
+						document.querySelector(".nmsg").innerHTML = "长度只能是1-30位";
+					}
+				}else{
+					document.querySelector(".msg").innerHTML = "只能输入1-9位的数字";
+				}
+			}
+			document.querySelector(".id").onfocus = function() {
+				var z = /^[0-9]{1,9}$/;
+				if(z.test(document.querySelector(".id").value)) {
+					document.querySelector(".msg").innerHTML = "";
+				} else {
+					document.querySelector(".msg").innerHTML = "只能输入1-9位的数字";
+				}
+
+			}
+			document.querySelector(".id").onblur = function() {
+				var z = /^[0-9]{1,9}$/;
+				if(z.test(document.querySelector(".id").value)) {
+					document.querySelector(".msg").innerHTML = "";
+				} else {
+					document.querySelector(".msg").innerHTML = "只能输入1-9位的数字";
+				}
+
+			}
+
+			document.querySelector(".name").onfocus = function() {
+				var z = /^[0-9a-zA-Z-_#&%]{1,30}$/;
+				if(z.test(document.querySelector(".name").value)) {
+					document.querySelector(".nmsg").innerHTML = "";
+				} else {
+					document.querySelector(".nmsg").innerHTML = "长度只能是1-30位";
+				}
+
+			}
+			document.querySelector(".name").onblur = function() {
+				var z = /^[0-9a-zA-Z-_#&%]{1,30}$/;
+				if(z.test(document.querySelector(".name").value)) {
+					document.querySelector(".nmsg").innerHTML = "";
+				} else {
+					document.querySelector(".nmsg").innerHTML = "长度只能是1-30位";
+				}
+
+			}
+
+			document.querySelector(".price").onfocus = function() {
+				var z = /^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/;
+				if(z.test(document.querySelector(".price").value)) {
+					document.querySelector(".pmsg").innerHTML = "";
+				} else {
+					document.querySelector(".pmsg").innerHTML = "只能输入正数";
+				}
+
+			}
+			document.querySelector(".price").onblur = function() {
+				var z = /^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/;
+				if(z.test(document.querySelector(".price").value)) {
+					document.querySelector(".pmsg").innerHTML = "";
+				} else {
+					document.querySelector(".pmsg").innerHTML = "只能输入正数";
+				}
+
+			}
+		</script>
+	</body>
+
+</html>

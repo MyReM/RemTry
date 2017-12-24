@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button>hellow</button>
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script>
+			var Student = function() {
+				var age = 1;
+				this.getAge = function() {
+					return Age;
+				}
+				this.setAge = function(age) {
+					if(age >= 18 && 30 >= age) {
+						this.age = age;
+					} else {
+						throw "年龄必须在18到30之间";
+					}
+				}
+			};
+			var rose = new Student();
+			try {
+				rose.setAge(31)
+			} catch(e) {
+				console.log(e)
+				//TODO handle the exception
+			}
+
+			//继承
+			function food() {
+				this.name = "食物";
+				this.getName = function() {
+					return this.name;
+				}
+				this.setName = function(name) {
+					this.name = name;
+				}
+				this.back = function() {
+					console.log("这是" + this.name);
+				}
+
+			}
+			//f1继承food
+			f1.prototype = new food();
+
+			function f1() {
+				this.fname = function() {
+					console.log("这是一个橙子");
+				}
+			}
+			//		创建一个food()f1
+			var f1 = new f1();
+			//设置foodName
+			f1.setName("橙子");
+			//调用back方法
+			f1.back();
+
+			//f2继承food
+			f2.prototype = new food();
+
+			function f2() {
+				this.fname = function() {
+					console.log("这是一串葡萄");
+				}
+			}
+			//		创建一个food()f2
+			var f2 = new f2();
+			//设置foodName
+			f2.setName("葡萄")
+			//调用back方法
+			f2.back();
+
+			;
+			(function(method) {
+				method(window, window.document, jQuery);
+			}(function(win, doc,$) {
+				console.log("这是一个拓展方法");
+				$.fn.hellow = function(message) {
+					$(this).css("background","red");
+				}
+				return this;
+			}));
+			$("button").hellow("s");
+		</script>
+	</body>
+
+</html>

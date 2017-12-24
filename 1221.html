@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.xing {
+				width: 105px;
+				background: url(img/starky.png);
+				height: 21px;
+				position: relative;
+			}
+			
+			a {
+				display: block;
+				position: absolute;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.pingfen {
+				width: 500px;
+			}
+			
+			.pingfen div {
+				display: inline-block;
+			}
+			
+			.clicka {
+				background: url(img/starsy.png);
+				left: 0;
+			}
+			
+			.starhover:hover {
+				background: url(img/starsy.png);
+				left: 0;
+			}
+			
+			a.clibg {
+				background: url(img/starsy.png);
+				left: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pingfen1">
+			<div class="xing"></div>
+			<div class="msg">你的评分：<span class="score"></span>&nbsp;&nbsp;分</div>
+			<div class="pingjia"></div>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+		<script>
+			;
+			(function(method) {
+				method(window, document, jQuery);
+			}(function(win, doc, $) {
+				$.fn.minRating = function(object, acount) {
+					var defaults = {
+						awidth: 10.5,
+						acount: 10,
+						pjmsg: [
+							"很差",
+							"差",
+							"很一般",
+							"一般",
+							"中下",
+							"中等",
+							"中上",
+							"好",
+							"很好",
+							"非常好",
+
+						],
+						score: "score",
+						diva: "xing",
+						pingjia: "pingjia",
+					};
+					options = $.extend({}, defaults, acount);
+					var len = options.acount;
+					var alen = options.awidth;
+					var ascore = (5 / alen);
+					var xingParent = "." + options.diva;
+					for(var i = 0; i < len; i++) {
+						var newA = $("<a href='javascript:void(0)' class='starhover' data-score=" + ((i + 1) / 2) + "></a>");
+						newA.css({
+							"left": 0,
+							"width": alen * (i + 1),
+							"z-index": len - i,
+							"height": 21,
+							"line-height": 21
+						});
+						newA.appendTo(xingParent);
+					}
+					var scored = 0;
+					$("a").on("click", function() {
+						$("a").removeClass("clibg");
+						$(this).addClass("clibg");
+						scored = $(this).data("score");
+						$(".score").html(scored);
+					});
+					$(".xing a").mouseenter(function() {
+						$("this").addClass("starhover");
+						$(".score").html($(this).data("score"));
+					});
+
+					$(".xing a").mouseleave(function() {
+						$("this").removeClass("starhover");
+						$(".score").html(scored);
+					});
+				}
+			}));
+			$("#pingfen1").minRating();
+		</script>
+	</body>
+
+</html>
